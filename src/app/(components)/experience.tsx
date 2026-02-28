@@ -1,6 +1,6 @@
 import { Briefcase, Code2, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
+
 
 function Experience() {
   const experiences = [
