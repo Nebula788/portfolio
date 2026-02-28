@@ -1,37 +1,63 @@
 
-const About = () => {
+"use client";
+
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+function About() {
   return (
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center snap-center px-6"
+      className="relative w-full py-24 px-6 sm:px-8 lg:px-16 xl:px-24 2xl:px-40"
     >
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-5xl w-full">
-        <div className="">
-          <img
-            src="/port-pro.png"
-            alt="@8bitcn"
-            className="w-48 md:w-64 pixelated"
-          />
-        </div>
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="max-w-5xl mx-auto"
+      >
+        {/* Title */}
+        <motion.h2
+          variants={item}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-8"
+        >
+          About Me
+        </motion.h2>
 
-        <div className="text-primary text-4xl md:text-4xl ">
-          <ul className="grid grid-cols-2  gap-y-4">
-            <li>Peace :</li>
-            <li>Human</li>
+        {/* Main Description */}
+        <motion.div
+          variants={item}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
+          <p className="text-base sm:text-lg xl:text-xl text-slate-400 leading-relaxed mb-6">
+            I'm a junior front-end developer focused on building clean,
+            responsive, and user-friendly web interfaces. I enjoy solving
+            problems through code and continuously improving my development
+            workflow.
+          </p>
+          <p className="text-base sm:text-lg xl:text-xl text-slate-400 leading-relaxed">
+            My goal is to grow into a strong front-end engineer by writing
+            maintainable code, understanding performance optimization, and
+            collaborating on meaningful real-world projects.
+          </p>
+        </motion.div>
 
-            <li>Class :</li>
-            <li>Front End</li>
-
-            <li>Age :</li>
-            <dd>20</dd>
-
-            <li>Level :</li>
-            <li>Junior</li>
-          </ul>
-        </div>
-      </div>
+        
+      </motion.div>
     </section>
   );
-};
+}
 
 export default About;

@@ -115,6 +115,11 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+section {
+  scroll-margin-top: 5rem;
+  scroll-margin-bottom: 5rem;
+}
+
 .btn {
   @apply bg-black/70 text-white w-14 h-14 rounded-xl text-xl select-none;
 }

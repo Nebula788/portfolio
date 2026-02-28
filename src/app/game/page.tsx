@@ -1,141 +1,11 @@
-// "use client";
-// import { useEffect, useRef, useState } from "react";
-// import { SpriteAnimator } from "react-sprite-animator";
 
-// const SPRITE_WIDTH = 256 / 4;
-// const SPRITE_HEIGHT = 256 / 4;
-// const SPEED = 2;
-
-// const walkingAnimations = {
-//   idle: { start: 0, frames: 1, fps: 1 },
-//   bottom: { start: 1, frames: 4, fps: 6 },
-//   left: { start: 4, frames: 8, fps: 6 },
-//   right: { start: 8, frames: 12, fps: 6 },
-//   top: { start: 13, frames: 16, fps: 6 },
-// };
-
-// type Action = "bottom" | "left" | "right" | "top" | "idle";
-
-// const Page = () => {
-//   const [position, setPosition] = useState({ x: 0, y: 0 });
-//   const [action, setAction] = useState<Action>("idle");
-
-//   useEffect(() => {
-//     setPosition({
-//       x: window.innerWidth / 2 - SPRITE_WIDTH / 2,
-//       y: window.innerHeight / 2 - SPRITE_HEIGHT / 2,
-//     });
-//   }, []);
-
-//   const keys = useRef<Record<string, boolean>>({});
-
-//   const anim = walkingAnimations[action];
-
-//   useEffect(() => {
-//     const down = (e: KeyboardEvent) => {
-//       keys.current[e.key] = true;
-
-//       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-//         e.preventDefault();
-//       }
-//     };
-
-//     const up = (e: KeyboardEvent) => {
-//       keys.current[e.key] = false;
-//     };
-
-//     window.addEventListener("keydown", down, { passive: false });
-//     window.addEventListener("keyup", up);
-
-//     let rafId: number;
-
-//     const loop = () => {
-//       let moving = false;
-
-//       setPosition((prev) => {
-//         let { x, y } = prev;
-//         let moving = false;
-
-//         if (keys.current["ArrowUp"]) {
-//           y -= SPEED;
-//           setAction("top");
-//           moving = true;
-//         }
-//         if (keys.current["ArrowDown"]) {
-//           y += SPEED;
-//           setAction("bottom");
-//           moving = true;
-//         }
-//         if (keys.current["ArrowLeft"]) {
-//           x -= SPEED;
-//           setAction("left");
-//           moving = true;
-//         }
-//         if (keys.current["ArrowRight"]) {
-//           x += SPEED;
-//           setAction("right");
-//           moving = true;
-//         }
-
-//         if (!moving) {
-//           setAction("idle");
-//         }
-
-//         const maxX = window.innerWidth - SPRITE_WIDTH;
-//         const maxY = window.innerHeight - SPRITE_HEIGHT;
-
-//         x = Math.max(0, Math.min(x, maxX));
-//         y = Math.max(0, Math.min(y, maxY));
-
-//         return { x, y };
-//       });
-
-//       rafId = requestAnimationFrame(loop);
-//     };
-
-//     loop();
-
-//     return () => {
-//       window.removeEventListener("keydown", down);
-//       window.removeEventListener("keyup", up);
-//       cancelAnimationFrame(rafId);
-//     };
-//   }, []);
-
-//   return (
-//     <div className="bg-amber-100 h-screen  relative overflow-hidden">
-//       {/* <img src={"./field-back2.png"} className="w-full -z-10 absolute h-full" /> */}
-//       <div
-//         style={{
-//           transform: `translate(${position.x}px, ${position.y}px)`,
-//         }}
-//       >
-//         <SpriteAnimator
-//           sprite="/sheets2.png"
-//           width={256 / 4}
-//           height={256 / 4}
-//           wrapAfter={4}
-//           startFrame={anim.start}
-//           frameCount={anim.frames}
-//           fps={anim.fps}
-//           shouldAnimate={action !== "idle"}
-//           loop
-//           style={{ imageRendering: "pixelated" }}
-//           key={action}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Page;
 
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 import { SpriteAnimator, SpriteAnimatorProps } from "react-sprite-animator";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Button } from "@/components/ui/8bit/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 /* =======================
@@ -254,7 +124,7 @@ export default function Page() {
           <Button className="">Back to Home</Button>
         </Link>
       </div>
-      <img src={"./field-back2.png"} className="w-full -z-10 absolute h-full" />
+      {/* <img src={"./field-back2.png"} className="w-full -z-10 absolute h-full" /> */}
       {/* Sprite */}
       <div
         style={{
@@ -317,3 +187,4 @@ export default function Page() {
     </div>
   );
 }
+
